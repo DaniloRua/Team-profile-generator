@@ -4,14 +4,10 @@ const Intern = require("./lib/Intern");
 const inquirer = require("inquirer");
 const path = require("path");
 const fs = require("fs");
-
+const teamMembers = [];
+const render = require("./src/page-template.js");
 const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
-
-const render = require("./src/page-template.js");
-
-const teamMembers = [];
-
 
 
 function init() {
@@ -20,7 +16,15 @@ function init() {
   Adding employees to the team
   =================
   `);
-  inquirer.prompt([
+
+
+  if (!fs.existsSync(OUTPUT_DIR)) {
+    fs.mkdirSync(OUTPUT_DIR);
+  }
+
+  
+  inquirer
+    .prompt([
       {
         type: "list",
         name: "role",
@@ -30,34 +34,34 @@ function init() {
       {
         type: "input",
         name: "name",
-        message: "What is the name?"
+        message: "What is your name?"
       },
       {
         type: "input",
         name: "id",
-        message: "What is the ID?"
+        message: "What is your ID?"
       },
       {
         type: "input",
         name: "email",
-        message: "What is the email?"
+        message: "What is your email?"
       },
       {
         type: "input",
         name: "github",
-        message: "What is the GitHub username?",
+        message: "What is your GitHub username?",
         when: (answer) => answer.role === "engineer"
       },
       {
         type: "input",
         name: "school",
-        message: "What is the school?",
+        message: "What is your school?",
         when: (answer) => answer.role === "intern"
       },
       {
         type: "input",
         name: "officeNumber",
-        message: "What is the office number?",
+        message: "What is your office number?",
         when: (answer) => answer.role === "manager"
       },
       {
@@ -107,14 +111,6 @@ function init() {
         });
       }
     });
-
-
-
-
-
-
-
-
 }
 
 init();
