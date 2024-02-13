@@ -1,0 +1,28 @@
+{
+  "name": "starter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^24.9.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DaniloRua/Team-profile-generator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/DaniloRua/Team-profile-generator/issues"
+  },
+  "homepage": "https://github.com/DaniloRua/Team-profile-generator#readme",
+  "dependencies": {
+    "inquirer": "^8.0.0"
+  }
+}
