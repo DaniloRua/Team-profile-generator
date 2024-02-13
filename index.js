@@ -67,6 +67,53 @@ function init() {
         choices: ["yes", "no"]
       }
     ])
+    .then(function (answer) {
+      if (answer.role === "engineer") {
+        const engineer = new Engineer(
+          answer.name,
+          answer.id,
+          answer.email,
+          answer.github
+        );
+        teamMembers.push(engineer);
+      }
+      if (answer.role === "intern") {
+        const intern = new Intern(
+          answer.name,
+          answer.id,
+          answer.email,
+          answer.school
+        );
+        teamMembers.push(intern);
+      }
+      if (answer.role === "manager") {
+        const manager = new Manager(
+          answer.name,
+          answer.id,
+          answer.email,
+          answer.officeNumber
+        );
+        teamMembers.push(manager);
+      }
+
+      if (answer.addMember === "yes") {
+        init();
+      } else {
+        fs.writeFile(outputPath, render(teamMembers), (error) => {
+          if (error) {
+            return console.log(error);
+          }
+          console.log("Team profile generated");
+        });
+      }
+    });
+
+
+
+
+
+
+
 
 }
 
