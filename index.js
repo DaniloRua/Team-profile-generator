@@ -103,7 +103,7 @@ function init() {
       }
       //call the function again to add a new member
       //else, add array of team member to the render function
-      // create a html file
+      // create a html fileCS
       if (answer.addMember === "yes") {
         init();
       } else {
